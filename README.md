@@ -1,15 +1,12 @@
 # MGI imaging analysis
 
-MATLAB code for the multi-GRIN imaging (M1, DMS, VLT) analyses of baseline sessions, of the Baseline → TD and TD → TBZ comparisons, and of activity around voluntary licks (VL) and tongue protrusions (TP). It reads the condition files written by `MGI_data_export` (`BLS.mat`, `DW.mat`, `TBZ.mat`, `BLL.mat`). The VL/TP analysis needs the supervised tongue-protrusion bouts (`behavior.tongueProtrusion`) that the exporter writes for BLL, DW and TBZ.
-
 ## Requirements
 
 MATLAB R2019b or later with the Statistics and Machine Learning Toolbox (`linkage` and `cluster` order the correlation matrices; `fitlme`, `kstest2` and `pdist` are used when available).
 
 ## Data
 
-The condition files are not part of the repository. Set `cfg.paths.data` in `config/mgi_config.m` to the folder that holds them, or pass it at run time (see below). Results are written to `results/` inside the repository unless `cfg.paths.results` is set.
-
+The condition files are not part of the repository. Set `cfg.paths.data` in `config/mgi_config.m` to the folder that holds them. Results are written to `results/` inside the repository 
 ## Run
 
 ```matlab
@@ -20,7 +17,7 @@ changes  = run_condition_changes();   % Baseline vs TD and TD vs TBZ: transient 
 vltp     = run_vl_tp();               % BLL (VL) and DW (TP): event-aligned activity, epoch AUC
 ```
 
-Each run function loads the data, preprocesses it, saves the preprocessed results and statistics, and draws the figures. The two halves can also be run separately:
+Each run function loads the data, preprocesses it, saves the preprocessed results and statistics, and draws the figures.
 
 ```matlab
 cfg = mgi_config();
@@ -53,10 +50,3 @@ results/         preprocessed/, statistics/, figures/ (created on first run)
 ```
 
 
-- loading and cohort selection;
-- the orofacial speed against an independent implementation;
-- the circular-shift nulls and the event-aligned activity against direct computation;
-- the statistical primitives;
-- the complete baseline, comparison and VL/TP pipelines, including all figures.
-
-They pass in GNU Octave 8.4 (with the statistics package).
